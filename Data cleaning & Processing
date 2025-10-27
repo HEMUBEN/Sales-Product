@@ -16,7 +16,7 @@ print(df.rename(columns= {  'Order_ID':'Order ID',
 print(df.head())
 print(df)
 -----------------------------------------------------------------------------------------------------------------------------
-     Order_ID Order_Date     Customer_Name Region Product_Category Product_Name  Quantity  Unit_Price  Discount  Sales_Amount
+     Order ID Order Date     Customer Name Region Product Category Product Name  Quantity  Unit Price  Discount  Sales Amount
 0    2db75003 2025-07-19     Karen Watkins   West      Electronics      Instead         3         809         5       2305.65
 1    23805d05 2025-02-23      Julie Mcneil   West       Stationery         Into         4        2568        15       8731.20
 2    6c2d80cd 2025-04-03    Susan Thompson  South        Groceries        About        13        4231         0      55003.00
