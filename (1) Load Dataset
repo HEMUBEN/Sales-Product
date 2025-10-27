@@ -7,6 +7,7 @@ df = pd.read_excel(r"C:\Users\benda\Downloads\Sales_Data_500_Rows.xlsx")
 print("Dataset shape:", df.shape)
 print(df.head())
 print(df)
+print(df)
 -----------------------------------------------------------------------------------------------------------------------------
      Order_ID Order_Date     Customer_Name Region Product_Category Product_Name  Quantity  Unit_Price  Discount  Sales_Amount
 0    2db75003 2025-07-19     Karen Watkins   West      Electronics      Instead         3         809         5       2305.65
