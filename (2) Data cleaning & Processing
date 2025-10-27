@@ -36,6 +36,7 @@ df["Weekday"] = df["Order_Date"].dt.day_name()   # e.g., Monday, Tuesday
 
 # Display the new columns
 print(df[["Order_Date", "Year", "Weekday"]].head())
+print(df)
 
 [500 rows x 10 columns]
 ------------------------------
