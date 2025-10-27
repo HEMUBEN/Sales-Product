@@ -1,0 +1,124 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+(1) # Load dataset
+df = pd.read_excel(r"C:\Users\benda\Downloads\Sales_Data_500_Rows.xlsx")
+
+# Data overview
+print("Dataset shape:", df.shape)
+print(df.head())
+
+(2) # Data cleaning & Processing
+df.dropna(inplace=True)
+
+#Clean Columnn Names
+print(df.rename(columns= {  'Order_ID':'Order ID',
+                            'Order_Date':'Order Date',
+                            'Customer_Name':'Customer Name',
+                            'Region':'Region',
+                            'Product_Category':'Product Category',
+                            'Product_Name':'Product Name',
+                            'Quantity':'Quantity',
+                            'Unit_Price':'Unit Price',
+                            'Discount':'Discount',
+                            'Sales_Amount':'Sales Amount',
+                            }))
+
+
+
+# Add new time-based columns
+df["Year"] = df["Order_Date"].dt.year
+df["Weekday"] = df["Order_Date"].dt.day_name()   # e.g., Monday, Tuesday
+
+# Display the new columns
+print(df[["Order_Date", "Year", "Weekday"]].head())
+
+(3) # KPI Calculations
+total_sales = df["Sales_Amount"].sum()
+total_orders = df["Order_ID"].nunique()
+avg_order_value = df["Sales_Amount"].mean()
+top_region = df.groupby("Region")["Sales_Amount"].sum().idxmax()
+top_category = df.groupby("Product_Category")["Sales_Amount"].sum().idxmax()
+
+print("SALES KPI DASHBOARD")
+print(f" Total Sales: ₹{total_sales:,.2f}")
+print(f" Total Orders: {total_orders}")
+print(f" Average Order Value: ₹{avg_order_value:,.2f}")
+print(f" Top Region: {top_region}")
+print(f" Top Category: {top_category}")
+
+# Monthly sales trend
+df["Month"] = df["Order_Date"].dt.to_period("M")
+monthly_sales = df.groupby("Month")["Sales_Amount"].sum()
+
+(4) # Vizulazation Reports & Dashboards
+
+print("Line chart With Monthly Sales Trend")
+plt.figure(figsize=(10,5))
+monthly_sales.plot(kind="bar", color="skyblue")
+plt.title("Monthly Sales Trend")
+plt.xlabel("Month")
+plt.ylabel("Total Sales (₹)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# <<<<<< Pie Chart — Sales by Product Category >>>>>>
+print("Pie Chart With Monthly Sales Trend")
+category_sales = df.groupby("Product_Category")["Sales_Amount"].sum()
+plt.figure(figsize=(6,6))
+plt.pie(category_sales, labels=category_sales.index, autopct='%1.1f%%', startangle=140)
+plt.title("Sales Distribution by Product Category")
+plt.show()
+
+# <<<<<< Bar Chart — Sales by Region >>>>>>
+print("Bar Chart — Sales by Region")
+region_sales = df.groupby("Region")["Sales_Amount"].sum().reset_index()
+plt.figure(figsize=(8,5))
+sns.barplot(x="Region", y="Sales_Amount", data=region_sales, palette="viridis")
+plt.title("Total Sales by Region", fontsize=14)
+plt.ylabel("Sales Amount (₹)")
+plt.xlabel("Region")
+plt.tight_layout()
+plt.show()
+
+# <<<<<< Histogram — Distribution of Sales Amount >>>>>>
+print("Histogram — Distribution of Sales Amount")
+plt.figure(figsize=(8,5))
+sns.histplot(df["Sales_Amount"], bins=30, kde=True, color="teal")
+plt.title("Distribution of Sales Amount", fontsize=14)
+plt.xlabel("Sales Amount (₹)")
+plt.ylabel("Frequency")
+plt.tight_layout()
+plt.show()
+
+# <<<<<< Scatter Plot — Quantity vs Sales >>>>>>
+print("Scatter Plot — Quantity vs Sales")
+plt.figure(figsize=(8,5))
+sns.scatterplot(x="Quantity", y="Sales_Amount", hue="Region", data=df)
+plt.title("Quantity vs Sales Amount", fontsize=14)
+plt.tight_layout()
+plt.show()
+
+# <<<<<< Combine Multiple Charts (optional) >>>>>>
+fig, axs = plt.subplots(1, 2, figsize=(12,5))
+
+# Bar chart - Sales by Region
+sns.barplot(x="Region", y="Sales_Amount", data=region_sales, ax=axs[0], palette="magma")
+axs[0].set_title("Sales by Region")
+
+# Pie chart - Category Sales
+axs[1].pie(category_sales, labels=category_sales.index, autopct='%1.1f%%', startangle=140)
+axs[1].set_title("Category Contribution")
+
+plt.tight_layout()
+plt.show()
+
+
+plt.savefig("charts/sales_by_region.png", dpi=300, bbox_inches="tight")
+
+
+# Sales by region
+region_sales = df.groupby("Region")["Sales_Amount"].sum().sort_values(ascending=False)
+print("\nSales by Region:\n", region_sales)
