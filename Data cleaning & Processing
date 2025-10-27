@@ -1,1 +1,22 @@
+(2) Data Cleaning & Processing
+df.dropna(inplace=True)
 
+#Clean Columnn Names
+print(df.rename(columns= {  'Order_ID':'Order ID',
+                            'Order_Date':'Order Date',
+                            'Customer_Name':'Customer Name',
+                            'Region':'Region',
+                            'Product_Category':'Product Category',
+                            'Product_Name':'Product Name',
+                            'Quantity':'Quantity',
+                            'Unit_Price':'Unit Price',
+                            'Discount':'Discount',
+                            'Sales_Amount':'Sales Amount',
+                            }))
+
+# Add new time-based columns
+df["Year"] = df["Order_Date"].dt.year
+df["Weekday"] = df["Order_Date"].dt.day_name()   # e.g., Monday, Tuesday
+
+# Display the new columns
+print(df[["Order_Date", "Year", "Weekday"]].head())
