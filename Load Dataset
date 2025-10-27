@@ -6,3 +6,17 @@ import seaborn as sns
 df = pd.read_excel(r"C:\Users\benda\Downloads\Sales_Data_500_Rows.xlsx")
 print("Dataset shape:", df.shape)
 print(df.head())
+-----------------------------------------------------------------------------------------------------------------------------
+     Order_ID Order_Date     Customer_Name Region Product_Category Product_Name  Quantity  Unit_Price  Discount  Sales_Amount
+0    2db75003 2025-07-19     Karen Watkins   West      Electronics      Instead         3         809         5       2305.65
+1    23805d05 2025-02-23      Julie Mcneil   West       Stationery         Into         4        2568        15       8731.20
+2    6c2d80cd 2025-04-03    Susan Thompson  South        Groceries        About        13        4231         0      55003.00
+3    92f104f1 2025-03-14        Kevin Bird  North        Groceries     Standard        14        1682        20      18838.40
+4    23bc7751 2025-06-13        Kevin Holt   West       Stationery         Site         6        3305        20      15864.00
+..        ...        ...               ...    ...              ...          ...       ...         ...       ...           ...
+495  5f4ba99d 2025-06-22        Lori Jones  North         Clothing         Area        10        4129         0      41290.00
+496  11cb4930 2025-06-12       Mark Gordon   West        Groceries         Rule        19         696        20      10579.20
+497  d0dc872e 2025-03-07  Jeffrey Gonzalez  South       Stationery    Statement         7        4010         5      26666.50
+498  b7153c7d 2024-11-05     Cynthia Avila  North       Stationery       Animal        19         553         0      10507.00
+499  9ac3e740 2025-01-10    Samantha Brown   West        Furniture         Like        15         638        15       8134.50
+-----------------------------------------------------------------------------------------------------------------------------
