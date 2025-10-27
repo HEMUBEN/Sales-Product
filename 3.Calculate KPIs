@@ -1,0 +1,22 @@
+(3) # KPI Calculations
+
+total_sales = df["Sales_Amount"].sum()
+total_orders = df["Order_ID"].nunique()
+avg_order_value = df["Sales_Amount"].mean()
+top_region = df.groupby("Region")["Sales_Amount"].sum().idxmax()
+top_category = df.groupby("Product_Category")["Sales_Amount"].sum().idxmax()
+
+print("SALES KPI DASHBOARD")
+print(f" Total Sales: ₹{total_sales:,.2f}")
+print(f" Total Orders: {total_orders}")
+print(f" Average Order Value: ₹{avg_order_value:,.2f}")
+print(f" Top Region: {top_region}")
+print(f" Top Category: {top_category}")
+
+#Answer
+SALES KPI RESULTS:
+Total Sales: ₹11,909,546.60
+Total Orders: 500
+Average Order Value: ₹23,819.09
+Top Region: West
+Top Category: Furniture
