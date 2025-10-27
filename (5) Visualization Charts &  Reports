@@ -1,0 +1,11 @@
+<<<<<< Line chart With Monthly Sales Trend >>>>>>
+print("Line chart With Monthly Sales Trend")
+plt.figure(figsize=(10,5))
+monthly_sales.plot(kind="bar", color="skyblue")
+plt.title("Monthly Sales Trend")
+plt.xlabel("Month")
+plt.ylabel("Total Sales (₹)")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
