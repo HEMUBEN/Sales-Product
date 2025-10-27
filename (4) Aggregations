@@ -1,0 +1,7 @@
+with pd.ExcelWriter("Sales_Aggregations.xlsx") as writer:
+    sales_by_region.to_excel(writer, sheet_name="Sales by Region", index=False)
+    category_sales.to_excel(writer, sheet_name="Sales by Category", index=False)
+    sales_by_month.to_excel(writer, sheet_name="Sales by Month", index=False)
+    sales_by_day.to_excel(writer, sheet_name="Sales by Weekday", index=False)
+
+print("Aggregated data exported successfully: Sales_Aggregations.xlsx")
