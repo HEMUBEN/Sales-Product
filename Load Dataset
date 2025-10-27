@@ -1,0 +1,6 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+(1) Load dataset
+df = pd.read_excel(r"C:\Users\benda\Downloads\Sales_Data_500_Rows.xlsx")
