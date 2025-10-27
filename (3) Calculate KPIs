@@ -14,9 +14,16 @@ print(f" Top Region: {top_region}")
 print(f" Top Category: {top_category}")
 
 #Answer
-SALES KPI RESULTS:
+SALES KPI RESULTS:-
 Total Sales: ₹11,909,546.60
 Total Orders: 500
 Average Order Value: ₹23,819.09
 Top Region: West
 Top Category: Furniture
+
+# Monthly sales trend
+df["Month"] = df["Order_Date"].dt.to_period("M")
+monthly_sales = df.groupby("Month")["Sales_Amount"].sum()
+
+
+
